@@ -1,5 +1,4 @@
-﻿using contaBancaria.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BankSolution.Models
 {
@@ -8,7 +7,6 @@ namespace BankSolution.Models
         public AccountContext(DbContextOptions<AccountContext> options)
             : base(options)
         {
-
         }
 
         public DbSet<Account> Accounts { get; set; } = null!;
