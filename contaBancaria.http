@@ -1,0 +1,6 @@
+@contaBancaria_HostAddress = http://localhost:5203
+
+GET {{contaBancaria_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
