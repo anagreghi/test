@@ -1,35 +1,46 @@
-﻿//using BankSolution.Models;
+﻿using BankSolution.Models;
 
-//namespace BankSolution.Models
-//{
-//    public class CheckingAccount : Account
-//    {
-//        public decimal Limit { get; set; }
+namespace BankSolution.Models
+{
+    public class CheckingAccount : Account
+    {
+        public CheckingAccount(Guid accountId) : base(accountId)
+        {
+        }
 
-//        public CheckingAccount(Customer customer, int accountNumber, int branchNumber, decimal limit)
-//            : base(customer, accountNumber, branchNumber)
-//        {
-//            Limit = limit;
-//        }
-//        //verificando o balance (saldo) da conta para saque
-//        public override bool Withdraw(decimal value)
-//        {
-//            if (Balance + Limit >= value)
-//            {
-//                Balance -= value;
-//                return true;
-//            }
-//            return false;
+        public int Limit { get; set; } = 50;
 
-//        }
-//        //aplicando a taxa de juros informada pelo usuario quando a conta está negativa
-//        public void ApplyInterest(decimal interestRate)
-//        {
-//            if (Balance < 0)
-//            {
-//                Balance -= Balance * interestRate;
-//            }
-//        }
+        public override bool Withdraw(int value)
+        {
+            if (Balance + Limit < value)
+            {
+                return false;
+            }
 
-//    }
-//}
+            Balance -= value;
+            return true;
+
+        }
+        
+        public void ApplyFee(int interestRate)
+        {
+            if (Balance < 0)
+            {
+                Balance -= Balance * interestRate;
+            }
+        }
+
+        public int CalculateFeeValue(int feeRate)
+        {
+            int fee = (Balance * feeRate) / 10000;
+            return fee;
+        }
+
+        public void CalculateMonthlyFee(int feeRate)
+        {
+            int fee = CalculateFeeValue(feeRate);
+            fee *= -1;
+            Balance += Balance * fee;
+        }
+    }
+}

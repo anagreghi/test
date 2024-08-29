@@ -2,20 +2,11 @@
 {
     public class Customer
     {
-        public int Id { get; set; }
-        public string CPF { get; set; }
+        public Guid Id { get; set; }
+        public string DocumentNumber { get; set; }
         public string Name { get; set; }
-        //public Address Address { get; set; }
-        public string Address { get; set; }
-        public string Profession { get; set; }
-
-        //public Customer(string cpf, string name, string address, string profession)
-        //{
-        //    CPF = cpf ?? throw new ArgumentNullException(nameof(cpf));
-        //    Name = name ?? throw new ArgumentNullException(nameof(name));
-        //    Address = address ?? throw new ArgumentNullException(nameof(address));
-        //    Profession = profession ?? throw new ArgumentNullException(nameof(profession));
-        //}
-        //public List<Account> Accounts { get; set; } = new List<Account>();
+        public Address Address { get; set; }
+        public string Occupation { get; set; }
+        public IList<Account> Accounts { get; set; }
     }
 }
